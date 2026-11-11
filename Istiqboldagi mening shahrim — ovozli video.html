@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Istiqboldagi mening shahrim — video</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#0B1F1A;--bg2:#124236;--ink:#F3F7F2;--mint:#3DDC97;--amber:#FFB84D;--mut:#BFE9D6}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;overflow:hidden}
+body{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+#bg{position:fixed;inset:0;background:radial-gradient(circle at 80% 10%,#1B5E4A 0,transparent 45%),radial-gradient(circle at 10% 90%,#124236 0,transparent 50%),var(--bg)}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:40vmax;height:40vmax;background:var(--mint);right:-12vmax;top:-14vmax}
+.b2{width:28vmax;height:28vmax;background:var(--amber);left:-10vmax;bottom:-12vmax;animation-delay:-6s;opacity:.22}
+@keyframes fl{to{transform:translate(-6vmax,5vmax) scale(1.15)}}
+#stage{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:6vmin 7vw 20vh;gap:3vmin}
+.sc>*{opacity:0;transform:translateY(24px);animation:in .8s forwards}
+.sc>*:nth-child(2){animation-delay:.25s}.sc>*:nth-child(3){animation-delay:.5s}.sc>*:nth-child(4){animation-delay:.75s}
+@keyframes in{to{opacity:1;transform:none}}
+.tag{font-weight:700;letter-spacing:.08em;color:var(--amber);font-size:clamp(12px,1.8vw,22px)}
+h1,h2{font-family:'Space Grotesk',sans-serif;line-height:1.08}
+h1{font-size:clamp(34px,8vw,110px)}h2{font-size:clamp(28px,5vw,68px)}
+p.lead{font-size:clamp(16px,2.6vw,34px);color:var(--mut);line-height:1.4;max-width:30em}
+.row{display:flex;gap:2.5vw;flex-wrap:wrap}
+.card{flex:1 1 220px;background:rgba(18,66,54,.85);border:1px solid rgba(61,220,151,.25);border-radius:24px;padding:2.4vmax;display:flex;flex-direction:column;gap:1vmax}
+.card b{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,64px);color:var(--mint)}
+.card span{font-size:clamp(14px,2vw,26px);line-height:1.35}
+.bars{display:flex;align-items:flex-end;gap:4vw;height:38vh}
+.bar{flex:1;max-width:200px;border-radius:16px 16px 0 0;position:relative;height:0;animation:grow 1.6s .4s cubic-bezier(.2,.8,.2,1) forwards;display:flex;justify-content:center}
+.bar i{position:absolute;top:-1.6em;font-style:normal;font-weight:700;font-size:clamp(18px,3vw,40px)}
+.bar u{position:absolute;bottom:-1.8em;text-decoration:none;color:var(--mut);font-size:clamp(13px,1.8vw,24px);white-space:nowrap}
+@keyframes grow{to{height:var(--h)}}
+.pn{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--amber)}
+.sketch{width:min(100%,520px);border-radius:20px}
+#sub{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(7vh + env(safe-area-inset-bottom,0px));width:min(92vw,1100px);text-align:center;font-size:clamp(14px,2vw,26px);line-height:1.4;background:rgba(0,0,0,.55);padding:.7em 1em;border-radius:14px;backdrop-filter:blur(6px)}
+#pg{position:fixed;left:0;bottom:0;height:6px;background:var(--mint);width:0;transition:width .6s}
+#start{position:fixed;inset:0;z-index:9;background:rgba(11,31,26,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5vmin;text-align:center;padding:6vmin}
+#start h1{font-size:clamp(30px,6vw,80px)}
+button{font:700 clamp(18px,2.6vw,30px) Inter,sans-serif;background:var(--mint);color:#0B1F1A;border:0;border-radius:999px;padding:.7em 1.8em;cursor:pointer}
+#note{font-size:clamp(13px,1.6vw,20px);color:var(--mut);max-width:34em}
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:14px;z-index:5;display:flex;gap:8px}
+#ctl button{font-size:15px;padding:.5em 1em;background:rgba(243,247,242,.14);color:var(--ink)}
+</style></head><body>
+<div id="bg"></div><div class="blob b1"></div><div class="blob b2"></div>
+<div id="stage"></div><div id="sub"></div><div id="pg"></div>
+<div id="ctl"><button id="rp">↺ Qayta</button></div>
+<div id="start"><p class="tag">7-SINF · TARBIYA · LOYIHA ISHI</p><h1>Istiqboldagi mening shahrim</h1>
+<button id="go">▶ Videoni boshlash</button>
+<p id="note">Ovozli hikoya uchun qurilmangizda ovoz yoqilgan bo‘lsin. Bu video brauzer ovozidan foydalanadi.</p></div>
+<script>
+const S=[
+{n:"Assalomu alaykum! Biz “Istiqboldagi mening shahrim” loyihasini taqdim etamiz. Bizning yo‘nalishimiz — yashil hudud va ekologiya.",
+h:`<p class="tag">YASHIL HUDUD VA EKOLOGIYA</p><h1>Istiqboldagi mening shahrim</h1><p class="lead">10 yildan keyin shahrimiz qanday bo‘ladi?</p>`},
+{n:"Mahallamizda yashil maydonlar yetarli emas, chiqindi yaxshi saralanmaydi, havo sifati esa pasaymoqda. Shuning uchun savolimiz: shahrimizni yashilroq va ekologik barqaror qilish uchun nima qilamiz?",
+h:`<p class="tag">MUAMMO VA SAVOL</p><h2>Shahrimiz yashilroq bo‘lishi kerak</h2><div class="row"><div class="card"><b>🌳</b><span>Yashil maydonlar yetarli emas</span></div><div class="card"><b>♻️</b><span>Chiqindi saralanmaydi</span></div><div class="card"><b>🌫️</b><span>Havo sifati pasaymoqda</span></div></div>`},
+{n:"Holatni uch mezon bo‘yicha o‘rgandik: yashil maydonlar, chiqindini saralash, havo va atrof-muhit. Dalillarni kuzatish, mini-so‘rov va ishonchli manbalar orqali to‘pladik.",
+h:`<p class="tag">3 MEZON</p><h2>Dalillarni qanday to‘pladik?</h2><div class="row"><div class="card"><b>01</b><span>Yashil maydonlar</span></div><div class="card"><b>02</b><span>Chiqindini saralash</span></div><div class="card"><b>03</b><span>Havo va atrof-muhit</span></div></div><p class="lead">Kuzatish · mini-so‘rov · ishonchli manba</p>`},
+{n:"Natijalarga ko‘ra, yashil maydonlar bo‘yicha ko‘rsatkich 38 foiz, chiqindini saralash bo‘yicha 22 foiz, havo va atrof-muhit bo‘yicha 27 foiz. Eng past ko‘rsatkich saralashda. Ikki sabab bor: bo‘sh yerlar ko‘kalamzorlashtirilmagan, saralash konteynerlari esa kam.",
+h:`<p class="tag">TAHLIL</p><h2>Hozirgi holat</h2><div class="bars"><div class="bar" style="--h:100%;background:#3DDC97;color:#0B1F1A"><i style="color:#3DDC97">38%</i><u>Yashil</u></div><div class="bar" style="--h:58%;background:#FFB84D"><i style="color:#FFB84D">22%</i><u>Saralash</u></div><div class="bar" style="--h:71%;background:#1B5E4A"><i style="color:#BFE9D6">27%</i><u>Havo</u></div></div>`},
+{n:"Ikki yechim taklif qildik: yashil hovlilar va mini-bog‘lar hamda chiqindini saralash punktlari. Biz birinchi yechimni tanladik, chunki u bo‘sh yerlarni ko‘kalamzorlashtiradi va hovlilarni dam olish joyiga aylantiradi.",
+h:`<p class="tag">YECHIM</p><h2>Ikki yechim, bitta tanlov</h2><div class="row"><div class="card" style="border-color:#FFB84D"><b>✔ 1</b><span>Yashil hovlilar va mini-bog‘lar</span></div><div class="card"><b>2</b><span>Chiqindini saralash punktlari</span></div></div>`},
+{n:"Mana 10 yillik eskizimiz. Chapda hozirgi holat, o‘ngda 10 yildan keyingi holat: bo‘sh yerlar o‘rnida daraxtlar, bog‘ va dam olish joyi paydo bo‘ladi.",
+h:`<p class="tag">10 YILLIK ESKIZ</p><h2>Hozir va 10 yildan keyin</h2><div class="row"><svg class="sketch" viewBox="0 0 700 360" aria-label="Hozirgi holat"><rect width="700" height="360" rx="20" fill="#E4E8E5"/><rect x="40" y="40" width="140" height="100" rx="10" fill="#8A948F"/><rect x="260" y="40" width="140" height="100" rx="10" fill="#8A948F"/><rect x="480" y="40" width="180" height="100" rx="10" fill="#8A948F"/><circle cx="120" cy="260" r="22" fill="#9BCDB4"/><text x="30" y="345" font-size="26" fill="#3A4D45" font-weight="700">Hozir</text></svg><svg class="sketch" viewBox="0 0 700 360" aria-label="10 yildan keyin"><rect width="700" height="360" rx="20" fill="#C8EBD8"/><rect x="40" y="40" width="140" height="100" rx="10" fill="#8A948F"/><rect x="260" y="40" width="140" height="100" rx="10" fill="#8A948F"/><rect x="480" y="40" width="180" height="100" rx="10" fill="#8A948F"/><rect x="40" y="190" width="620" height="130" rx="20" fill="#3DDC97"/><circle cx="110" cy="250" r="34" fill="#1B5E4A"/><circle cx="260" cy="250" r="34" fill="#1B5E4A"/><circle cx="410" cy="250" r="34" fill="#1B5E4A"/><rect x="510" y="225" width="110" height="60" rx="10" fill="#FFB84D"/><text x="30" y="180" font-size="26" fill="#0B1F1A" font-weight="700">10 yildan keyin</text></svg></div>`},
+{n:"Istiqboldagi shahrimiz uchun uch tamoyil. Birinchi: har bir hovli yashil bo‘lsin. Ikkinchi: chiqindi — yo‘qotish emas, resurs. Uchinchi: qaror dalilga tayansin. E’tiboringiz uchun rahmat!",
+h:`<p class="tag">XULOSA</p><h2>Istiqboldagi shahrimiz uchun 3 tamoyil</h2><div class="row"><div class="card"><b class="pn">1</b><span>Har bir hovli yashil bo‘lsin</span></div><div class="card"><b class="pn">2</b><span>Chiqindi — yo‘qotish emas, resurs</span></div><div class="card"><b class="pn">3</b><span>Qaror dalilga tayansin</span></div></div><p class="lead">Rahmat! 🌱</p>`}
+];
+const st=document.getElementById("stage"),sub=document.getElementById("sub"),pg=document.getElementById("pg");
+let i=0,tok=0,voice=null,spoken=true;
+function pick(){const v=speechSynthesis.getVoices();voice=v.find(x=>/^uz/i.test(x.lang))||v.find(x=>/^tr/i.test(x.lang))||null;
+ const n=document.getElementById("note");
+ if(v.length&&!voice)n.textContent="Brauzeringizda o‘zbek yoki turk ovozi topilmadi: video sarlavhalar bilan davom etadi. Ovozli versiya uchun Chrome (Android yoki kompyuter) dan foydalaning.";
+ else if(voice&&!/^uz/i.test(voice.lang))n.textContent="O‘zbek ovozi topilmadi, shuning uchun turkcha ovoz ishlatiladi (talaffuzi yaqin). Ovoz yoqilganini tekshiring.";}
+if("speechSynthesis" in window){pick();speechSynthesis.onvoiceschanged=pick}else spoken=false;
+function play(k){const my=++tok;i=k;const s=S[k];st.innerHTML='<div class="sc" style="display:contents">'+s.h+'</div>';
+ sub.textContent=s.n;pg.style.width=((k+1)/S.length*100)+"%";
+ let done=false;const next=()=>{if(done||my!==tok)return;done=true;if(k+1<S.length)setTimeout(()=>play(k+1),700);else{sub.textContent="Tugadi. Qayta ko‘rish uchun ↺ bosing."}};
+ const ms=s.n.length*75+2500;
+ if(spoken&&voice){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(s.n);u.voice=voice;u.lang=voice.lang;u.rate=.92;u.onend=next;u.onerror=next;speechSynthesis.speak(u);setTimeout(next,ms+6000)}
+ else setTimeout(next,ms)}
+document.getElementById("go").onclick=()=>{document.getElementById("start").remove();play(0)};
+document.getElementById("rp").onclick=()=>{if("speechSynthesis" in window)speechSynthesis.cancel();play(0)};
+</script></body></html>
